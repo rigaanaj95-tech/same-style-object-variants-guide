@@ -6,18 +6,16 @@
   <title>same-style-object-variants 操作指南</title>
   <style>
     :root {
-      --ink: #17130f;
-      --muted: #746d63;
-      --paper: #fffaf0;
-      --paper-2: #f7efe2;
-      --line: #ded1bf;
-      --red: #e84235;
-      --red-dark: #8f1d19;
-      --black: #0b0b0b;
-      --cream: #fff6e4;
-      --code: #201a17;
-      --code-ink: #fff3dd;
-      --shadow: 0 36px 90px rgba(0, 0, 0, 0.28);
+      --bg: #f7f7f5;
+      --paper: #fbfbfa;
+      --panel: #efefee;
+      --card: #e8e6e6;
+      --ink: #151515;
+      --muted: #7b7b7b;
+      --soft: #bdbdbd;
+      --line: #dedddb;
+      --accent: #111111;
+      --radius: 8px;
     }
 
     * { box-sizing: border-box; }
@@ -26,604 +24,635 @@
 
     body {
       margin: 0;
+      background: var(--bg);
       color: var(--ink);
-      background:
-        radial-gradient(circle at 15% 0%, rgba(232, 66, 53, 0.30), transparent 34rem),
-        radial-gradient(circle at 88% 12%, rgba(255, 246, 228, 0.10), transparent 26rem),
-        linear-gradient(135deg, #070707 0%, #17110e 48%, #090909 100%);
-      font: 16px/1.72 ui-serif, "Songti SC", "Noto Serif CJK SC", "STSong", Georgia, serif;
+      font: 15px/1.62 "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", sans-serif;
       letter-spacing: 0;
     }
 
     a { color: inherit; }
 
-    .shell {
-      width: min(1180px, calc(100% - 40px));
-      margin: 40px auto 56px;
+    .page {
+      width: min(1060px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 72px 0 80px;
     }
 
-    .hero {
-      position: relative;
-      overflow: hidden;
-      min-height: 480px;
-      padding: clamp(34px, 6vw, 72px);
-      border: 1px solid rgba(255, 250, 240, 0.18);
-      border-radius: 30px;
-      background:
-        linear-gradient(115deg, rgba(255, 250, 240, 0.96), rgba(247, 239, 226, 0.90)),
-        var(--paper);
-      box-shadow: var(--shadow);
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 28px;
-      border: 1px solid rgba(23, 19, 15, 0.16);
-      border-radius: 22px;
-      pointer-events: none;
-    }
-
-    .hero::after {
-      content: "$same-style";
-      position: absolute;
-      right: -40px;
-      bottom: -34px;
-      color: rgba(232, 66, 53, 0.10);
-      font: 800 clamp(84px, 14vw, 180px)/0.8 ui-sans-serif, "Arial Black", sans-serif;
-      letter-spacing: 0;
-      transform: rotate(-6deg);
-      pointer-events: none;
-    }
-
-    .eyebrow {
-      display: inline-flex;
+    .topbar {
+      display: flex;
       align-items: center;
-      gap: 10px;
-      position: relative;
-      z-index: 1;
-      margin-bottom: 28px;
-      color: var(--red-dark);
-      font: 700 13px/1 ui-sans-serif, system-ui, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+      justify-content: space-between;
+      margin-bottom: 54px;
     }
 
-    .eyebrow::before {
-      content: "";
-      width: 38px;
-      height: 2px;
-      background: var(--red);
+    .topbar strong {
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .brand {
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+    }
+
+    .soft-title {
+      margin: 0 0 36px;
+      color: #c7c7c7;
+      text-align: center;
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    .stage {
+      background: linear-gradient(180deg, #f1f1f0 0%, #f7f7f6 100%);
+      border: 1px solid #eeeeed;
+      padding: clamp(44px, 7vw, 72px) clamp(22px, 5vw, 68px);
+      min-height: 620px;
+    }
+
+    .pill {
+      width: max-content;
+      margin: 0 auto 24px;
+      padding: 9px 34px;
+      border-radius: 999px;
+      background: #e5e5e4;
+      color: #888;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-copy {
+      max-width: 700px;
+      margin: 0 auto 52px;
+      text-align: center;
     }
 
     h1 {
-      position: relative;
-      z-index: 1;
-      max-width: 850px;
       margin: 0;
-      font: 800 clamp(44px, 8vw, 98px)/0.92 ui-sans-serif, "Arial Black", "Helvetica Neue", sans-serif;
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.05;
+      font-weight: 500;
       letter-spacing: -0.02em;
     }
 
-    .hero-sub {
-      position: relative;
-      z-index: 1;
-      max-width: 650px;
-      margin: 28px 0 0;
-      color: var(--muted);
-      font-size: clamp(17px, 2vw, 22px);
+    .hero-copy p {
+      max-width: 550px;
+      margin: 14px auto 0;
+      color: #777;
+      font-size: 15px;
+      line-height: 1.7;
     }
 
-    .hero-grid {
-      position: relative;
-      z-index: 1;
+    .mosaic {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 24px;
-      align-items: end;
-      margin-top: 54px;
-    }
-
-    .trigger-card {
-      padding: 24px;
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.48);
-      backdrop-filter: blur(10px);
-    }
-
-    .trigger-label {
-      color: var(--muted);
-      font: 700 12px/1 ui-sans-serif, system-ui, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .trigger {
-      display: block;
-      margin-top: 12px;
-      color: var(--red);
-      font: 700 clamp(24px, 4vw, 42px)/1.05 "SFMono-Regular", Consolas, monospace;
-      word-break: break-word;
-    }
-
-    .principles {
-      display: grid;
-      gap: 10px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .principles li {
-      padding: 14px 16px;
-      border-left: 3px solid var(--red);
-      background: rgba(232, 66, 53, 0.07);
-      color: #3e342d;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 260px minmax(0, 1fr);
-      gap: 28px;
-      align-items: start;
-      margin-top: 28px;
-    }
-
-    nav {
-      position: sticky;
-      top: 24px;
-      padding: 24px;
-      border: 1px solid rgba(255, 250, 240, 0.18);
-      border-radius: 24px;
-      background: rgba(255, 250, 240, 0.08);
-      color: var(--cream);
-      backdrop-filter: blur(18px);
-    }
-
-    nav strong {
-      display: block;
-      margin-bottom: 14px;
-      color: #fff;
-      font: 800 14px/1 ui-sans-serif, system-ui, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    nav a {
-      display: block;
-      padding: 9px 0;
-      color: rgba(255, 246, 228, 0.72);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255, 246, 228, 0.10);
-      font: 600 14px/1.45 ui-sans-serif, system-ui, sans-serif;
-    }
-
-    nav a:hover { color: #fff; }
-
-    main {
-      display: grid;
-      gap: 22px;
-    }
-
-    section {
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      background: var(--paper);
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
-      overflow: hidden;
-    }
-
-    .section-inner { padding: clamp(26px, 4vw, 44px); }
-
-    .section-kicker {
-      margin-bottom: 14px;
-      color: var(--red);
-      font: 800 12px/1 ui-sans-serif, system-ui, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-    }
-
-    h2 {
-      margin: 0 0 18px;
-      font: 800 clamp(28px, 4vw, 46px)/1.04 ui-sans-serif, "Helvetica Neue", sans-serif;
-      letter-spacing: -0.01em;
-    }
-
-    h3 {
-      margin: 26px 0 10px;
-      font: 800 19px/1.25 ui-sans-serif, system-ui, sans-serif;
-    }
-
-    p { margin: 12px 0; color: #332b25; }
-
-    .lead {
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 22px;
-    }
-
-    .card {
-      min-height: 148px;
-      padding: 20px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: linear-gradient(180deg, #fffdf8, #f8efe2);
-    }
-
-    .card b {
-      display: block;
-      margin-bottom: 8px;
-      font: 800 16px/1.3 ui-sans-serif, system-ui, sans-serif;
-    }
-
-    .card p { margin: 0; color: var(--muted); }
-
-    .flow {
-      counter-reset: step;
-      display: grid;
+      grid-template-columns: 1.08fr 0.92fr 0.92fr;
+      grid-template-rows: 236px 210px;
       gap: 12px;
-      margin-top: 24px;
+      max-width: 840px;
+      margin: 0 auto;
     }
 
-    .step {
-      counter-increment: step;
-      display: grid;
-      grid-template-columns: 64px 1fr;
-      gap: 18px;
-      align-items: start;
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: #fffdf8;
+    .tile {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--card);
     }
 
-    .step::before {
-      content: counter(step, decimal-leading-zero);
+    .tile.large { grid-row: span 2; padding: 20px; }
+    .tile.wide { grid-column: span 2; }
+
+    .object-card {
+      height: 58%;
       display: grid;
       place-items: center;
-      width: 54px;
-      height: 54px;
+      border-radius: var(--radius);
+      background: #f8f8f7;
+    }
+
+    .object {
+      width: 120px;
+      height: 120px;
+      border: 2px solid #171717;
+      border-radius: 24px 24px 14px 14px;
+      position: relative;
+      transform: rotate(-5deg);
+    }
+
+    .object::before {
+      content: "";
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      top: 24px;
+      height: 8px;
+      background: #171717;
+      box-shadow: 0 24px 0 #171717, 0 48px 0 #171717;
+      opacity: 0.85;
+    }
+
+    .object::after {
+      content: "";
+      position: absolute;
+      width: 72px;
+      height: 34px;
+      left: 24px;
+      bottom: -28px;
+      border: 2px solid #171717;
+      border-top: 0;
+      border-radius: 0 0 36px 36px;
+    }
+
+    .tile h2,
+    .tile h3 {
+      margin: 0;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+
+    .tile.large h2 {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 86px;
+      font-size: 24px;
+      line-height: 1.12;
+    }
+
+    .tile.large .cta {
+      position: absolute;
+      left: 20px;
+      bottom: 26px;
+      display: inline-flex;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: #151515;
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .arrow {
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      background: var(--black);
-      color: var(--cream);
-      font: 800 16px/1 ui-sans-serif, system-ui, sans-serif;
+      background: #fff;
+      color: #151515;
+      font-size: 18px;
+      line-height: 1;
     }
 
-    .step b {
+    .photo-like {
+      display: grid;
+      align-items: end;
+      padding: 22px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.16), transparent 46%),
+        linear-gradient(120deg, #d5d3d2 0%, #f3f3f2 52%, #d9d7d7 100%);
+    }
+
+    .photo-like::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 96px;
+      top: 40px;
+      left: 30px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.46);
+      transform: rotate(-18deg);
+      filter: blur(2px);
+    }
+
+    .photo-like h3 {
+      position: relative;
+      max-width: 240px;
+      font-size: 24px;
+      line-height: 1.05;
+    }
+
+    .metric {
+      display: grid;
+      grid-template-columns: 1fr 90px;
+      align-items: end;
+      gap: 10px;
+      padding: 22px;
+    }
+
+    .metric b {
       display: block;
-      margin-bottom: 4px;
-      font: 800 18px/1.25 ui-sans-serif, system-ui, sans-serif;
+      font-size: 44px;
+      line-height: 0.9;
+      font-weight: 500;
     }
 
-    .step p { margin: 0; color: var(--muted); }
+    .metric span {
+      display: block;
+      margin-top: 8px;
+      color: #858585;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .crown {
+      width: 72px;
+      height: 118px;
+      margin-left: auto;
+      border-radius: 999px 999px 16px 16px;
+      background: linear-gradient(#f4f4f3, #d4d2d2);
+      border: 2px solid #171717;
+      position: relative;
+    }
+
+    .crown::before {
+      content: "";
+      position: absolute;
+      left: 13px;
+      top: -34px;
+      width: 44px;
+      height: 34px;
+      background: #171717;
+      clip-path: polygon(0 100%, 14% 28%, 38% 58%, 50% 0, 66% 58%, 88% 28%, 100% 100%);
+    }
+
+    .wide {
+      display: grid;
+      grid-template-columns: 1fr 180px;
+      gap: 18px;
+      align-items: end;
+      padding: 28px;
+    }
+
+    .wide h3 {
+      max-width: 430px;
+      font-size: 26px;
+      line-height: 1.08;
+    }
+
+    .wide h3 span { color: #b4b4b4; }
+
+    .figure {
+      justify-self: end;
+      width: 150px;
+      height: 170px;
+      border-radius: 70px 70px 10px 10px;
+      background: #d2d0d0;
+      border: 2px solid #171717;
+      position: relative;
+    }
+
+    .figure::before,
+    .figure::after {
+      content: "";
+      position: absolute;
+      top: 34px;
+      width: 48px;
+      height: 18px;
+      background: #151515;
+      border-radius: 999px;
+    }
+
+    .figure::before { left: 22px; transform: rotate(-8deg); }
+    .figure::after { right: 22px; transform: rotate(8deg); }
+
+    .section-title {
+      margin: 76px auto 30px;
+      text-align: center;
+    }
+
+    .section-title .pill { margin-bottom: 20px; }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 450;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title p {
+      max-width: 560px;
+      margin: 10px auto 0;
+      color: #777;
+    }
+
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    .guide-card {
+      min-height: 250px;
+      padding: 22px;
+      border-radius: var(--radius);
+      background: var(--card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .guide-card h3 {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.18;
+    }
+
+    .guide-card p {
+      margin: 18px 0 0;
+      color: #696969;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .guide-card .num {
+      color: #aaa;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .syntax {
+      max-width: 840px;
+      margin: 12px auto 0;
+      padding: clamp(26px, 4vw, 42px);
+      border-radius: var(--radius);
+      background: #f1f0f0;
+    }
 
     pre {
-      margin: 18px 0 0;
-      padding: 22px;
+      margin: 16px 0 0;
+      padding: 20px;
       overflow-x: auto;
-      border-radius: 18px;
-      background:
-        linear-gradient(135deg, rgba(232, 66, 53, 0.18), transparent 32%),
-        var(--code);
-      color: var(--code-ink);
-      box-shadow: inset 0 0 0 1px rgba(255, 246, 228, 0.10);
+      border-radius: var(--radius);
+      background: #fcfcfb;
+      border: 1px solid var(--line);
+      color: #222;
     }
 
     code {
       font-family: "SFMono-Regular", Consolas, Menlo, monospace;
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.65;
     }
 
     p code, li code {
       padding: 2px 6px;
-      border-radius: 7px;
-      background: #f1e5d4;
-      color: #8f1d19;
+      border-radius: 5px;
+      background: #ecebea;
+      color: #222;
       font-size: 0.92em;
     }
 
-    .prompt-grid {
+    .two-col {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 18px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      max-width: 840px;
+      margin: 12px auto 0;
     }
 
-    .prompt {
-      padding: 18px;
-      border-radius: 18px;
-      background: #14110f;
-      color: var(--cream);
-      min-height: 220px;
+    .note {
+      min-height: 172px;
+      padding: 24px;
+      border-radius: var(--radius);
+      background: #e9e8e7;
     }
 
-    .prompt span {
-      display: block;
-      margin-bottom: 10px;
-      color: #ff776e;
-      font: 800 13px/1 ui-sans-serif, system-ui, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.10em;
+    .note h3 {
+      margin: 0 0 12px;
+      font-size: 19px;
+      line-height: 1.15;
     }
 
-    .prompt p {
-      color: rgba(255, 246, 228, 0.82);
+    .note p, .note li {
+      color: #666;
+      font-size: 13px;
+    }
+
+    .note ul {
       margin: 0;
-      font-size: 14px;
+      padding-left: 18px;
     }
 
-    .qa {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 20px;
-    }
-
-    .qa article {
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: #fffdf8;
-    }
-
-    .qa h3 { margin-top: 0; }
-
-    .share {
-      background:
-        linear-gradient(135deg, rgba(232, 66, 53, 0.92), rgba(143, 29, 25, 0.98)),
-        var(--red);
+    .download {
+      max-width: 840px;
+      margin: 56px auto 0;
+      padding: 34px;
+      border-radius: var(--radius);
+      background: #151515;
       color: #fff;
-    }
-
-    .share .section-inner { padding-bottom: 36px; }
-    .share h2, .share p, .share .section-kicker { color: #fff; }
-    .share .lead { color: rgba(255, 255, 255, 0.78); }
-
-    .share-options {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 24px;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
     }
 
-    .share-options .card {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.22);
-      color: #fff;
+    .download h2 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 450;
     }
 
-    .share-options .card p { color: rgba(255, 255, 255, 0.78); }
+    .download p {
+      margin: 8px 0 0;
+      color: #bdbdbd;
+    }
+
+    .download a {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      background: #fff;
+      color: #151515;
+      text-decoration: none;
+      font-weight: 700;
+      white-space: nowrap;
+    }
 
     footer {
-      margin: 26px 0 0;
-      color: rgba(255, 246, 228, 0.58);
-      text-align: center;
-      font: 600 13px/1.5 ui-sans-serif, system-ui, sans-serif;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 52px;
+      color: #9b9b9b;
+      font-size: 13px;
     }
 
-    @media (max-width: 940px) {
-      .hero-grid, .layout, .cards, .prompt-grid, .qa, .share-options {
-        grid-template-columns: 1fr;
-      }
-
-      nav { position: static; }
+    @media (max-width: 820px) {
+      .page { width: min(100% - 28px, 1060px); padding-top: 42px; }
+      .mosaic, .guide-grid, .two-col, .download { grid-template-columns: 1fr; }
+      .mosaic { grid-template-rows: auto; }
+      .tile.large { min-height: 430px; }
+      .tile:not(.large) { min-height: 220px; }
+      .wide { grid-template-columns: 1fr; }
+      .figure { justify-self: start; }
+      .download a { justify-content: center; }
+      footer { flex-direction: column; }
     }
 
-    @media (max-width: 620px) {
-      .shell { width: min(100% - 22px, 1180px); margin: 18px auto 34px; }
-      .hero { min-height: auto; padding: 30px 22px; border-radius: 20px; }
-      .hero::before { inset: 14px; border-radius: 16px; }
-      .step { grid-template-columns: 1fr; }
-      .step::before { width: 44px; height: 44px; }
+    @media (max-width: 520px) {
+      .topbar { margin-bottom: 38px; }
+      .stage { padding: 34px 14px; }
+      .soft-title { margin-bottom: 24px; }
+      .metric, .wide { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <div class="shell">
-    <header class="hero">
-      <div class="eyebrow">Codex Skill Guide</div>
-      <h1>Same Style<br />Object Variants</h1>
-      <p class="hero-sub">一套把“参考图风格”迁移到新物体、场景或素材上的 Codex skill。默认跟随参考图媒介和画风，不强制写实。</p>
-
-      <div class="hero-grid">
-        <div class="trigger-card">
-          <div class="trigger-label">Explicit trigger</div>
-          <code class="trigger">$same-style-object-variants</code>
-        </div>
-        <ul class="principles">
-          <li>参考图是手绘，就生成手绘；参考图是摄影，才生成摄影。</li>
-          <li>先提炼风格 DNA，再替换目标物体或场景。</li>
-          <li>支持 prompt、image2 生图、筛选返工和后期建议。</li>
-        </ul>
-      </div>
+  <div class="page">
+    <header class="topbar">
+      <strong>审美积累</strong>
+      <div class="brand">YANG</div>
     </header>
 
-    <div class="layout">
-      <nav aria-label="目录">
-        <strong>Guide Index</strong>
-        <a href="#what">能力定位</a>
-        <a href="#install">安装方式</a>
-        <a href="#usage">调用方式</a>
-        <a href="#inputs">输入建议</a>
-        <a href="#flow">工作流程</a>
-        <a href="#examples">示例任务</a>
-        <a href="#trouble">常见返工</a>
-        <a href="#share">团队分享</a>
-      </nav>
+    <h2 class="soft-title">浅色系</h2>
 
-      <main>
-        <section id="what">
-          <div class="section-inner">
-            <div class="section-kicker">01 / Capability</div>
-            <h2>它解决什么问题</h2>
-            <p class="lead"><code>$same-style-object-variants</code> 用来基于一张参考图，生成同风格的物体、场景或素材变体。它会提取参考图的媒介、画风、构图、配色、字体、线条、材质和主体关系，再把你的目标替换进去。</p>
-            <div class="cards">
-              <div class="card">
-                <b>不默认写实</b>
-                <p>除非用户明确说“写实”或“真实摄影感”，否则优先匹配参考图本身的风格。</p>
-              </div>
-              <div class="card">
-                <b>不继承历史风格</b>
-                <p>每次任务都以当前参考图为唯一风格来源，避免被上一张图污染。</p>
-              </div>
-              <div class="card">
-                <b>支持多种对象</b>
-                <p>可以生成物体、场景、材质、促销海报素材、社媒图、设计探索图。</p>
-              </div>
-              <div class="card">
-                <b>支持继续生图</b>
-                <p>当 image2、即梦、Lovart 或 ChatGPT 图像生成可用时，可以进入生成和迭代。</p>
-              </div>
-            </div>
+    <main class="stage">
+      <div class="pill">Codex Skill Guide</div>
+      <section class="hero-copy" aria-labelledby="title">
+        <h1 id="title">Same Style Object Variants</h1>
+        <p>一个把参考图风格迁移到新物体、场景或素材上的可复用 Codex skill。它先读懂参考图，再生成提示词、批量方案、筛选和返工建议。</p>
+      </section>
+
+      <section class="mosaic" aria-label="核心能力">
+        <article class="tile large">
+          <div class="object-card"><div class="object" aria-hidden="true"></div></div>
+          <h2>基于参考图生成同风格物体、场景和素材变体。</h2>
+          <a class="cta" href="same-style-object-variants-skill.zip">Download Package <span class="arrow">→</span></a>
+        </article>
+
+        <article class="tile photo-like">
+          <h3>Extracts style DNA before generating variants.</h3>
+        </article>
+
+        <article class="tile metric">
+          <div>
+            <b>6</b>
+            <span>steps from reference image to usable assets.</span>
           </div>
-        </section>
+          <div class="crown" aria-hidden="true"></div>
+        </article>
 
-        <section id="install">
-          <div class="section-inner">
-            <div class="section-kicker">02 / Installation</div>
-            <h2>安装方式</h2>
-            <p>把压缩包解压后，将 <code>same-style-object-variants</code> 文件夹复制到 Codex skills 目录。</p>
-            <pre><code>mkdir -p ~/.codex/skills
-cp -R same-style-object-variants ~/.codex/skills/</code></pre>
-            <p>安装后目录应类似：</p>
-            <pre><code>~/.codex/skills/same-style-object-variants/
-├── SKILL.md
-├── agents/
-│   └── openai.yaml
-└── references/
-    ├── prompting.md
-    └── quality-check.md</code></pre>
+        <article class="tile wide">
+          <h3>Follows the current reference style, <span>not a fixed green platform or forced realism.</span></h3>
+          <div class="figure" aria-hidden="true"></div>
+        </article>
+      </section>
+
+      <section class="section-title">
+        <div class="pill">Workflow</div>
+        <h2>Skill 如何工作</h2>
+        <p>每一次调用都以当前参考图为准。参考图是手绘，就跟随手绘；参考图是摄影，才进入真实产品摄影感。</p>
+      </section>
+
+      <section class="guide-grid" aria-label="工作流程">
+        <article class="guide-card">
+          <span class="num">01</span>
+          <div>
+            <h3>识别输入</h3>
+            <p>确认参考图、目标物体或场景、数量、视角、用途和必须保留的限制。</p>
           </div>
-        </section>
+        </article>
+        <article class="guide-card">
+          <span class="num">02</span>
+          <div>
+            <h3>提取风格</h3>
+            <p>分析媒介、构图、色彩、线条、材质、光影、字体和视觉层级。</p>
+          </div>
+        </article>
+        <article class="guide-card">
+          <span class="num">03</span>
+          <div>
+            <h3>生成提示词</h3>
+            <p>把风格 brief 转成可直接用于 image2 或其他生图工具的 prompt。</p>
+          </div>
+        </article>
+        <article class="guide-card">
+          <span class="num">04</span>
+          <div>
+            <h3>批量变体</h3>
+            <p>输出多组方向，并围绕摆放、比例、数量、视角和画面用途调整。</p>
+          </div>
+        </article>
+      </section>
 
-        <section id="usage">
-          <div class="section-inner">
-            <div class="section-kicker">03 / Invocation</div>
-            <h2>推荐调用方式</h2>
-            <p>最短调用：</p>
-            <pre><code>使用 $same-style-object-variants，帮我基于这张参考图生成同风格物体变体。
+      <section class="section-title">
+        <div class="pill">Invocation</div>
+        <h2>如何调用</h2>
+        <p>触发词建议直接写在任务开头，这样 Codex 能明确进入这套工作流。</p>
+      </section>
+
+      <section class="syntax" aria-label="调用示例">
+        <p>最短调用：</p>
+        <pre><code>使用 $same-style-object-variants，帮我基于这张参考图生成同风格物体变体。
 目标物体：一个沙发</code></pre>
-            <p>更完整调用：</p>
-            <pre><code>使用 $same-style-object-variants，帮我基于这张参考图生成同风格场景变体。
+
+        <p>更完整调用：</p>
+        <pre><code>使用 $same-style-object-variants，帮我基于这张参考图生成同风格场景变体。
 目标场景：一个舒适的家居场景
 数量：生成 3 个方向
 用途：社媒海报素材
 要求：跟随参考图画风，不要强制写实</code></pre>
-            <p>如果确实想要写实：</p>
-            <pre><code>使用 $same-style-object-variants，帮我基于这张参考图生成同风格写实物体变体。
-目标物体：一盏灯具
-要求：保持参考图构图，但产品本身要真实摄影感</code></pre>
-          </div>
-        </section>
+      </section>
 
-        <section id="inputs">
-          <div class="section-inner">
-            <div class="section-kicker">04 / Inputs</div>
-            <h2>给它什么信息，结果更稳</h2>
-            <div class="cards">
-              <div class="card"><b>参考图</b><p>最好直接上传图片；没有图时用清楚的风格描述代替。</p></div>
-              <div class="card"><b>目标对象</b><p>说明要替换成什么物体、场景或材质。</p></div>
-              <div class="card"><b>数量与用途</b><p>例如 1 张、3 组方案；用途是海报、素材还是设计探索。</p></div>
-              <div class="card"><b>风格约束</b><p>明确“跟随画风”或“需要写实”，避免模型自行切换媒介。</p></div>
-            </div>
-          </div>
-        </section>
+      <section class="two-col" aria-label="安装和返工">
+        <article class="note">
+          <h3>安装方式</h3>
+          <p>下载压缩包后解压，将 <code>same-style-object-variants</code> 文件夹复制到 Codex skills 目录。</p>
+          <pre><code>mkdir -p ~/.codex/skills
+cp -R same-style-object-variants ~/.codex/skills/</code></pre>
+        </article>
 
-        <section id="flow">
-          <div class="section-inner">
-            <div class="section-kicker">05 / Workflow</div>
-            <h2>skill 的工作流程</h2>
-            <div class="flow">
-              <div class="step"><div><b>识别参考图风格</b><p>提取媒介、画风、构图、颜色、字体、线条、材质、光影和主体比例。</p></div></div>
-              <div class="step"><div><b>生成风格 brief</b><p>把参考图风格变成一段可复用、可迁移的描述。</p></div></div>
-              <div class="step"><div><b>替换目标</b><p>保留参考图风格，只替换用户指定的物体、场景或材质。</p></div></div>
-              <div class="step"><div><b>生成提示词</b><p>输出适合生图工具直接使用的 prompt、避免项和变体策略。</p></div></div>
-              <div class="step"><div><b>生图与批量探索</b><p>工具可用时直接进入生成；否则给出可复制的 prompt。</p></div></div>
-              <div class="step"><div><b>筛选与返工</b><p>检查结果是否贴合参考图媒介、画风、构图、配色和排版。</p></div></div>
-            </div>
-          </div>
-        </section>
+        <article class="note">
+          <h3>常用返工语句</h3>
+          <ul>
+            <li>不要写实，严格跟随参考图的插画/平面/手绘风格。</li>
+            <li>只参考当前这张图，不要继承历史生成结果。</li>
+            <li>只生成 1 个主体物体，不要额外添加同类物体。</li>
+            <li>文字只作为版式元素，不需要真实可读。</li>
+          </ul>
+        </article>
+      </section>
 
-        <section id="examples">
-          <div class="section-inner">
-            <div class="section-kicker">06 / Examples</div>
-            <h2>三类典型任务</h2>
-            <div class="prompt-grid">
-              <div class="prompt">
-                <span>Illustration</span>
-                <p>使用 $same-style-object-variants，基于这张红底手绘家居海报，生成同风格的舒适家居场景。要求：跟随插画风格，不要写实。</p>
-              </div>
-              <div class="prompt">
-                <span>Catalog</span>
-                <p>使用 $same-style-object-variants，基于这张黑白产品目录页，生成同风格灯具变体。目标物体：一个线框结构落地灯。</p>
-              </div>
-              <div class="prompt">
-                <span>Campaign</span>
-                <p>使用 $same-style-object-variants，基于这张高饱和红色促销海报，生成同风格沙发变体。目标物体：一个现代沙发。</p>
-              </div>
-            </div>
-          </div>
-        </section>
+      <section class="two-col" aria-label="适用范围">
+        <article class="note">
+          <h3>适合做什么</h3>
+          <p>促销海报素材、产品目录页、手绘插画变体、社媒视觉探索、同风格物体替换、场景氛围延展。</p>
+        </article>
 
-        <section id="trouble">
-          <div class="section-inner">
-            <div class="section-kicker">07 / Repair Notes</div>
-            <h2>常见问题与返工语句</h2>
-            <div class="qa">
-              <article>
-                <h3>结果太写实</h3>
-                <p>补一句：<code>不要写实，严格跟随参考图的插画/平面/手绘风格。</code></p>
-              </article>
-              <article>
-                <h3>继承了上一张图</h3>
-                <p>补一句：<code>只参考当前这张图，不要继承历史生成结果。</code></p>
-              </article>
-              <article>
-                <h3>物体数量不准</h3>
-                <p>补一句：<code>只生成 1 个主体物体，不要额外添加同类物体。</code></p>
-              </article>
-              <article>
-                <h3>文字容易乱</h3>
-                <p>补一句：<code>文字只作为版式元素，不需要真实可读，不要出现品牌 logo。</code></p>
-              </article>
-            </div>
-          </div>
-        </section>
+        <article class="note">
+          <h3>不做什么</h3>
+          <p>不把所有参考图都变成绿色展台；不默认改成写实；不把历史图像风格带入下一次任务。</p>
+        </article>
+      </section>
 
-        <section id="share" class="share">
-          <div class="section-inner">
-            <div class="section-kicker">08 / Share</div>
-            <h2>如何让飞书里的同事都能打开</h2>
-            <p class="lead">当前 <code>file://</code> 链接只指向你的本机文件，别人点击会失效。要让团队访问，需要把 HTML 变成一个云端可访问地址，或者转成飞书文档内容。</p>
-            <div class="share-options">
-              <div class="card">
-                <b>推荐：转成飞书文档</b>
-                <p>把 HTML 页面内容复制到飞书文档，排版最稳定，也能评论和协作。</p>
-              </div>
-              <div class="card">
-                <b>上传到飞书云盘</b>
-                <p>把 HTML 作为文件上传并分享；适合下载查看，但在线预览能力取决于飞书设置。</p>
-              </div>
-              <div class="card">
-                <b>静态托管成网页</b>
-                <p>放到团队可访问的静态站点、对象存储、内部门户或 GitHub Pages，再把 https 链接贴进飞书。</p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
+      <section class="download">
+        <div>
+          <h2>Share with your team</h2>
+          <p>把这个页面链接贴到飞书文档即可；同事可以在线查看指南，也可以下载 skill 安装包。</p>
+        </div>
+        <a href="same-style-object-variants-skill.zip">Download skill <span class="arrow">→</span></a>
+      </section>
+    </main>
 
-    <footer>same-style-object-variants · Codex skill operation guide</footer>
+    <footer>
+      <span>same-style-object-variants · Codex skill operation guide</span>
+      <span>Updated for shared GitHub Pages</span>
+    </footer>
   </div>
 </body>
 </html>
