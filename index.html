@@ -4,19 +4,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>same-style-object-variants 操作指南</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --page: #f8f8f6;
-      --ink: #121212;
-      --muted: #747474;
-      --faint: #bfbfbd;
-      --panel: #f0f0ef;
-      --panel-2: #e9e8e7;
-      --paper: #fbfbfa;
-      --line: rgba(20, 20, 20, 0.075);
-      --shadow: 0 24px 70px rgba(18, 18, 18, 0.07);
-      --soft-shadow: 0 16px 36px rgba(18, 18, 18, 0.06);
-      --r: 18px;
+      --paper: #F2EEDF;
+      --paper-2: #ECE6D2;
+      --ink: #2A241B;
+      --ink-soft: #5C5345;
+      --pink: #E1A4C2;
+      --lemon: #D6DD63;
+      --blush: #E8C9B6;
+      --sage: #B7C7A8;
+      --lilac: #C9BEDC;
+      --card: rgba(255, 255, 255, 0.55);
+      --rule: rgba(42, 36, 27, 0.18);
+      --rule-strong: rgba(42, 36, 27, 0.35);
     }
 
     * { box-sizing: border-box; }
@@ -24,632 +28,493 @@
 
     body {
       margin: 0;
-      background: var(--page);
       color: var(--ink);
-      font: 15px/1.62 "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", sans-serif;
+      background:
+        radial-gradient(circle at 86% 8%, rgba(225,164,194,0.28), transparent 24rem),
+        radial-gradient(circle at 10% 16%, rgba(183,199,168,0.30), transparent 28rem),
+        var(--paper);
+      font-family: "Work Sans", "Helvetica Neue", Helvetica, Arial, "PingFang SC", sans-serif;
       letter-spacing: 0;
     }
 
     a { color: inherit; }
 
     .page {
-      width: min(1180px, calc(100% - 56px));
+      width: min(1180px, calc(100% - 48px));
       margin: 0 auto;
-      padding: 76px 0 88px;
+      padding: 68px 0 76px;
     }
 
-    .mast {
+    .chrome {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 58px;
-    }
-
-    .mast strong,
-    .mast span {
+      gap: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--rule);
+      color: var(--ink-soft);
+      font-family: "Cormorant Garamond", serif;
       font-size: clamp(25px, 3vw, 34px);
-      line-height: 1;
-      font-weight: 700;
-      letter-spacing: 0;
+      font-style: italic;
     }
 
-    .mast span {
-      font-weight: 400;
-      letter-spacing: 0.04em;
+    .chrome strong {
+      color: var(--ink);
+      font-style: normal;
+      font-weight: 500;
     }
 
-    .tone {
-      margin: 0 0 42px;
-      text-align: center;
-      color: #c7c7c5;
-      font-size: clamp(42px, 7vw, 64px);
-      line-height: 1;
-      font-weight: 300;
-      letter-spacing: 0.02em;
+    .cover {
+      min-height: 560px;
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(360px, 1.12fr);
+      gap: 42px;
+      align-items: end;
+      padding: 78px 0 52px;
+      border-bottom: 1px solid var(--rule);
     }
 
-    .canvas {
-      width: min(1000px, 100%);
-      margin: 0 auto;
-      padding: clamp(54px, 7vw, 76px);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0)),
-        var(--panel);
-      border: 1px solid rgba(255,255,255,0.9);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), var(--shadow);
+    .swatches {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 54px;
     }
 
-    .label {
-      width: max-content;
-      margin: 0 auto 24px;
-      padding: 8px 34px;
-      border-radius: 999px;
-      background: #e3e3e1;
-      color: #858585;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
+    .swatches i {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: block;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.45);
     }
 
-    .hero {
-      max-width: 700px;
-      margin: 0 auto 54px;
-      text-align: center;
+    .pink { background: var(--pink); }
+    .lemon { background: var(--lemon); }
+    .blush { background: var(--blush); }
+    .sage { background: var(--sage); }
+    .lilac { background: var(--lilac); }
+
+    .kicker {
+      margin: 0 0 18px;
+      color: var(--ink-soft);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 38px;
+      font-style: italic;
+      line-height: 1.1;
     }
+
+    h1, h2, h3, p { margin: 0; }
 
     h1 {
-      margin: 0;
-      font-size: clamp(38px, 5.8vw, 60px);
-      line-height: 1.02;
-      font-weight: 430;
-      letter-spacing: -0.04em;
-    }
-
-    .hero p,
-    .section-head p {
-      margin: 14px auto 0;
-      max-width: 560px;
-      color: #777;
-      font-size: 15px;
-      line-height: 1.72;
-    }
-
-    .bento {
-      display: grid;
-      grid-template-columns: 1.05fr 0.92fr 0.92fr;
-      grid-template-rows: 250px 226px;
-      gap: 14px;
-    }
-
-    .card {
-      position: relative;
-      overflow: hidden;
-      border-radius: var(--r);
-      background: rgba(232, 231, 230, 0.9);
-      border: 1px solid rgba(255,255,255,0.72);
-      box-shadow: var(--soft-shadow), inset 0 1px 0 rgba(255,255,255,0.72);
-    }
-
-    .card.tall {
-      grid-row: span 2;
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .preview-frame {
-      height: 220px;
-      border-radius: 15px;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.82), rgba(246,246,245,0.62)),
-        #f8f8f7;
-      border: 1px solid rgba(255,255,255,0.78);
-      display: grid;
-      place-items: center;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
-    }
-
-    .style-system {
-      width: 170px;
-      height: 126px;
-      position: relative;
-      filter: drop-shadow(0 18px 18px rgba(0,0,0,0.08));
-    }
-
-    .style-system i {
-      position: absolute;
-      display: block;
-      border: 1.5px solid rgba(20,20,20,0.78);
-      background: rgba(255,255,255,0.45);
-      backdrop-filter: blur(6px);
-    }
-
-    .style-system i:nth-child(1) {
-      width: 78px;
-      height: 104px;
-      left: 0;
-      bottom: 0;
-      border-radius: 22px 22px 10px 10px;
-      transform: rotate(-5deg);
-    }
-
-    .style-system i:nth-child(2) {
-      width: 102px;
-      height: 74px;
-      right: 2px;
-      top: 6px;
-      border-radius: 18px;
-      transform: rotate(4deg);
-    }
-
-    .style-system i:nth-child(3) {
-      width: 96px;
-      height: 20px;
-      right: 8px;
-      bottom: 16px;
-      border-radius: 999px;
-      background: rgba(20,20,20,0.8);
-    }
-
-    .tall h2 {
-      margin: 26px 0 0;
-      font-size: clamp(25px, 3vw, 32px);
-      line-height: 1.08;
-      font-weight: 650;
-      letter-spacing: -0.04em;
-    }
-
-    .download-button {
-      width: max-content;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 26px;
-      padding: 10px 12px 10px 16px;
-      border-radius: 999px;
-      background: #151515;
-      color: #fff;
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 650;
-    }
-
-    .circle {
-      display: grid;
-      place-items: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: #fff;
-      color: #151515;
-      font-size: 18px;
-      line-height: 1;
-    }
-
-    .image-card {
-      padding: 24px;
-      display: flex;
-      align-items: end;
-      background:
-        linear-gradient(110deg, rgba(255,255,255,0.84), rgba(255,255,255,0.05) 42%),
-        linear-gradient(145deg, #dad9d8 0%, #f7f7f6 52%, #d8d7d7 100%);
-    }
-
-    .image-card::before {
-      content: "";
-      position: absolute;
-      width: 265px;
-      height: 112px;
-      top: 40px;
-      left: 34px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.58);
-      transform: rotate(-18deg);
-      filter: blur(1px);
-    }
-
-    .image-card h3,
-    .wide h3 {
-      position: relative;
-      margin: 0;
-      font-size: clamp(22px, 2.6vw, 30px);
-      line-height: 1.03;
-      font-weight: 650;
-      letter-spacing: -0.045em;
-    }
-
-    .image-card h3 span,
-    .wide h3 span {
-      color: rgba(20,20,20,0.22);
-      font-weight: 400;
-    }
-
-    .metric {
-      padding: 26px;
-      display: grid;
-      grid-template-columns: 1fr 96px;
-      align-items: end;
-      gap: 12px;
-    }
-
-    .metric b {
-      display: block;
-      font-size: 56px;
-      line-height: 0.9;
-      font-weight: 430;
-      letter-spacing: -0.05em;
-    }
-
-    .metric p {
-      margin: 10px 0 0;
-      color: #8a8a8a;
-      font-size: 12px;
-      line-height: 1.35;
-    }
-
-    .material-totem {
-      align-self: center;
-      justify-self: end;
-      width: 74px;
-      height: 128px;
-      border-radius: 999px 999px 18px 18px;
-      background: linear-gradient(180deg, #fcfcfb, #d9d8d7);
-      border: 1px solid rgba(20,20,20,0.68);
-      box-shadow: inset 11px 0 18px rgba(255,255,255,0.65), 0 20px 28px rgba(0,0,0,0.08);
-      position: relative;
-    }
-
-    .material-totem::before {
-      content: "";
-      position: absolute;
-      left: 13px;
-      top: -34px;
-      width: 48px;
-      height: 34px;
-      background: #171717;
-      clip-path: polygon(0 100%, 15% 30%, 36% 62%, 50% 0, 64% 62%, 85% 30%, 100% 100%);
-    }
-
-    .wide {
-      grid-column: span 2;
-      display: grid;
-      grid-template-columns: 1fr 180px;
-      gap: 18px;
-      align-items: end;
-      padding: 30px;
-    }
-
-    .wide p {
-      position: relative;
-      max-width: 460px;
-      margin: 14px 0 0;
-      color: #777;
-    }
-
-    .portrait {
-      justify-self: end;
-      width: 150px;
-      height: 172px;
-      border-radius: 78px 78px 24px 24px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0)),
-        #d2d1d0;
-      border: 1px solid rgba(20,20,20,0.62);
-      box-shadow: inset 14px 0 18px rgba(255,255,255,0.58), 0 18px 30px rgba(0,0,0,0.08);
-      position: relative;
-    }
-
-    .portrait::before,
-    .portrait::after {
-      content: "";
-      position: absolute;
-      top: 43px;
-      width: 46px;
-      height: 18px;
-      border-radius: 999px;
-      background: #171717;
-    }
-
-    .portrait::before { left: 25px; transform: rotate(-8deg); }
-    .portrait::after { right: 25px; transform: rotate(8deg); }
-
-    .section-head {
-      margin: 76px auto 30px;
-      text-align: center;
-    }
-
-    .section-head h2 {
-      margin: 0;
-      font-size: clamp(30px, 4.5vw, 44px);
-      line-height: 1.08;
-      font-weight: 430;
-      letter-spacing: -0.035em;
-    }
-
-    .process {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .process article,
-    .note,
-    .sample {
-      border-radius: var(--r);
-      background: rgba(232,231,230,0.92);
-      border: 1px solid rgba(255,255,255,0.75);
-      box-shadow: var(--soft-shadow), inset 0 1px 0 rgba(255,255,255,0.72);
-    }
-
-    .process article {
-      min-height: 250px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .num {
-      color: #aaa;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    h4 {
-      margin: 0;
-      font-size: 18px;
-      line-height: 1.16;
-      font-weight: 650;
-      letter-spacing: -0.02em;
-    }
-
-    .process p,
-    .note p,
-    .note li,
-    .sample p {
-      color: #686868;
-      font-size: 13px;
-      line-height: 1.58;
-    }
-
-    .notes {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 14px;
-    }
-
-    .note,
-    .sample {
-      padding: 26px;
-    }
-
-    .note h3,
-    .sample h3 {
-      margin: 0 0 16px;
-      font-size: 22px;
-      line-height: 1.12;
-      font-weight: 560;
+      max-width: 720px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(76px, 9vw, 142px);
+      font-weight: 500;
+      line-height: 0.88;
       letter-spacing: -0.03em;
     }
 
+    h1 em {
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ink-soft);
+    }
+
+    .lede {
+      max-width: 58ch;
+      margin-top: 34px;
+      color: var(--ink-soft);
+      font-size: clamp(17px, 1.6vw, 22px);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    .hero-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-self: stretch;
+    }
+
+    .hero-card {
+      min-height: 242px;
+      border-radius: 34px;
+      padding: 30px;
+      background: var(--card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-card.wide {
+      grid-column: 1 / -1;
+      min-height: 190px;
+      background: var(--sage);
+    }
+
+    .hero-card strong {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(42px, 5vw, 70px);
+      font-weight: 500;
+      line-height: 0.94;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-card span,
+    .hero-card p {
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.48;
+    }
+
+    .download {
+      width: max-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px 12px 18px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--paper);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .download b {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Work Sans", sans-serif;
+      line-height: 1;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.6fr 1fr;
+      gap: 42px;
+      align-items: end;
+      padding: 78px 0 34px;
+    }
+
+    .section-head h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(48px, 6vw, 96px);
+      font-weight: 500;
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p {
+      color: var(--ink-soft);
+      font-size: 18px;
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .step {
+      min-height: 320px;
+      border-radius: 32px;
+      padding: 32px 28px;
+      background: var(--card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .step:nth-child(1) { background: var(--pink); }
+    .step:nth-child(2) { background: var(--lemon); }
+    .step:nth-child(3) { background: var(--blush); }
+    .step:nth-child(4) { background: var(--sage); }
+
+    .num {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 92px;
+      font-style: italic;
+      line-height: 0.85;
+    }
+
+    .step h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 42px;
+      font-weight: 500;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+    }
+
+    .step p {
+      margin-top: 20px;
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .method {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .panel {
+      min-height: 300px;
+      border-radius: 34px;
+      padding: 34px;
+      background: var(--card);
+    }
+
+    .panel.lemon { background: var(--lemon); }
+    .panel.lilac { background: var(--lilac); }
+
+    .panel h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(40px, 4.5vw, 68px);
+      font-weight: 500;
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+    }
+
+    .panel p,
+    .panel li {
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .panel p { margin-top: 22px; }
+    .panel ul { margin: 22px 0 0; padding-left: 20px; }
+
     pre {
-      margin: 16px 0 0;
-      padding: 18px;
+      margin: 24px 0 0;
+      padding: 24px;
       overflow-x: auto;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.58);
-      border: 1px solid rgba(20,20,20,0.07);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid var(--rule);
+      color: var(--ink);
     }
 
     code {
-      font-family: "SFMono-Regular", Consolas, Menlo, monospace;
-      font-size: 12px;
-      line-height: 1.65;
+      font-family: "Work Sans", "PingFang SC", sans-serif;
+      font-size: 14px;
+      line-height: 1.72;
+      font-weight: 400;
     }
 
-    p code,
-    li code {
-      padding: 2px 6px;
-      border-radius: 7px;
-      background: rgba(255,255,255,0.62);
-      color: #232323;
-    }
-
-    ul {
-      margin: 0;
-      padding-left: 18px;
+    p code, li code {
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.46);
     }
 
     .samples {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 14px;
-      margin-top: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
     }
 
     .sample {
-      min-height: 180px;
+      min-height: 260px;
+      border-radius: 34px;
+      padding: 32px;
+      background: var(--card);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
+    .sample h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 48px;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .sample p {
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
     .share {
-      margin-top: 54px;
-      padding: 34px;
-      border-radius: var(--r);
-      background: #151515;
-      color: #fff;
+      margin-top: 78px;
+      padding: 42px;
+      border-radius: 36px;
+      background: var(--ink);
+      color: var(--paper);
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 24px;
+      gap: 32px;
       align-items: center;
-      box-shadow: 0 28px 60px rgba(0,0,0,0.16);
     }
 
     .share h2 {
-      margin: 0;
-      font-size: 30px;
-      line-height: 1.08;
-      font-weight: 430;
-      letter-spacing: -0.03em;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(48px, 5vw, 78px);
+      font-weight: 500;
+      line-height: 0.95;
     }
 
     .share p {
-      margin: 10px 0 0;
-      color: #bdbdbd;
+      max-width: 680px;
+      margin-top: 16px;
+      color: rgba(242,238,223,0.72);
+      font-size: 17px;
+      line-height: 1.6;
     }
 
-    .share a {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 14px 12px 18px;
-      border-radius: 999px;
-      background: #fff;
-      color: #151515;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 700;
-      white-space: nowrap;
+    .share .download {
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .share .download b {
+      background: var(--ink);
+      color: var(--paper);
     }
 
     footer {
-      width: min(1000px, 100%);
-      margin: 42px auto 0;
       display: flex;
       justify-content: space-between;
-      gap: 18px;
-      color: #9a9a98;
-      font-size: 13px;
+      gap: 24px;
+      padding-top: 26px;
+      color: var(--ink-soft);
+      border-top: 1px solid var(--rule);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 24px;
+      font-style: italic;
     }
 
-    @media (max-width: 900px) {
-      .page { width: min(100% - 30px, 1180px); padding-top: 42px; }
-      .canvas { padding: 36px 18px; }
-      .bento, .process, .notes, .samples, .share { grid-template-columns: 1fr; }
-      .bento { grid-template-rows: auto; }
-      .card.tall { min-height: 500px; }
-      .card:not(.tall) { min-height: 230px; }
-      .wide { grid-column: span 1; grid-template-columns: 1fr; }
-      .portrait { justify-self: start; }
-      .share a { justify-content: center; }
-      footer { flex-direction: column; }
+    @media (max-width: 980px) {
+      .cover,
+      .section-head,
+      .method,
+      .share {
+        grid-template-columns: 1fr;
+      }
+
+      .steps,
+      .samples {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
-    @media (max-width: 560px) {
-      .mast { margin-bottom: 40px; }
-      .tone { margin-bottom: 26px; }
-      .metric { grid-template-columns: 1fr; }
-      .material-totem { justify-self: start; }
-      .preview-frame { height: 190px; }
+    @media (max-width: 640px) {
+      .page { width: min(100% - 26px, 1180px); padding-top: 36px; }
+      .chrome, footer { flex-direction: column; align-items: flex-start; }
+      .cover { padding-top: 48px; }
+      .hero-panel,
+      .steps,
+      .samples {
+        grid-template-columns: 1fr;
+      }
+      .hero-card.wide { grid-column: auto; }
+      .swatches i { width: 42px; height: 42px; }
+      .share { padding: 30px; }
+      .download { width: 100%; justify-content: center; }
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <header class="mast">
-      <strong>审美积累</strong>
-      <span>YANG</span>
+    <header class="chrome">
+      <strong>same-style-object-variants</strong>
+      <span>Codex Skill Guide</span>
     </header>
 
-    <h2 class="tone">浅色系</h2>
-
-    <main class="canvas">
-      <div class="label">Skill Template</div>
-      <section class="hero" aria-labelledby="title">
-        <h1 id="title">Same Style Object Variants</h1>
-        <p>基于一张参考图，提炼它的视觉语言，再生成同风格的新物体、场景或素材变体。默认跟随当前参考图风格，不强制写实。</p>
-      </section>
-
-      <section class="bento" aria-label="核心能力">
-        <article class="card tall">
-          <div>
-            <div class="preview-frame">
-              <div class="style-system" aria-hidden="true"><i></i><i></i><i></i></div>
-            </div>
-            <h2>从参考图到可复用变体方案。</h2>
+    <main>
+      <section class="cover" aria-labelledby="title">
+        <div>
+          <div class="swatches" aria-hidden="true">
+            <i class="pink"></i>
+            <i class="lemon"></i>
+            <i class="blush"></i>
+            <i class="sage"></i>
+            <i class="lilac"></i>
           </div>
-          <a class="download-button" href="same-style-object-variants-skill.zip">Download Package <span class="circle">→</span></a>
-        </article>
+          <p class="kicker">Beautiful HTML Templates · Soft Editorial</p>
+          <h1 id="title">Same Style <em>Object</em> Variants</h1>
+          <p class="lede">一套把“参考图风格”迁移到新物体、场景或素材上的 Codex skill。它默认跟随当前参考图，不固定继承任何历史风格，也不强制写实。</p>
+        </div>
 
-        <article class="card image-card">
-          <h3>Extract style DNA <span>before changing the object.</span></h3>
-        </article>
-
-        <article class="card metric">
-          <div>
-            <b>6</b>
-            <p>steps from reference image to usable prompt and assets.</p>
-          </div>
-          <div class="material-totem" aria-hidden="true"></div>
-        </article>
-
-        <article class="card wide">
-          <div>
-            <h3>Follows the current reference, <span>not a fixed past example.</span></h3>
-            <p>手绘、平面、目录页、促销摄影都可以作为风格源。只有用户明确要求写实时，才强化真实摄影感。</p>
-          </div>
-          <div class="portrait" aria-hidden="true"></div>
-        </article>
+        <div class="hero-panel">
+          <article class="hero-card pink">
+            <span>Trigger</span>
+            <strong>$same-style</strong>
+            <p>在任务开头写入触发词，Codex 会进入风格分析、提示词生成、批量变体与返工流程。</p>
+          </article>
+          <article class="hero-card">
+            <span>Principle</span>
+            <strong>Current image first.</strong>
+            <p>每次都以当前参考图为唯一风格源，避免上一张图的风格污染新任务。</p>
+          </article>
+          <article class="hero-card wide">
+            <span>Package</span>
+            <strong>Ready to share with your team.</strong>
+            <p>页面可直接贴到飞书文档；压缩包内包含 skill 文件、参考文档和安装说明。</p>
+            <a class="download" href="same-style-object-variants-skill.zip">Download skill <b>→</b></a>
+          </article>
+        </div>
       </section>
 
       <section class="section-head">
-        <div class="label">Workflow</div>
         <h2>Skill 如何工作</h2>
-        <p>把“看图描述风格、写提示词、批量生成、筛选返工”压成一个稳定流程。</p>
+        <p>参考图是插画，就生成插画；参考图是产品摄影，才生成摄影感。核心不是“固定某种视觉”，而是把当前图里的风格 DNA 稳定迁移到新对象。</p>
       </section>
 
-      <section class="process" aria-label="工作流程">
-        <article>
+      <section class="steps" aria-label="工作流程">
+        <article class="step">
           <span class="num">01</span>
           <div>
-            <h4>识别输入</h4>
-            <p>确认参考图、目标物体或场景、数量、视角、用途和硬性约束。</p>
+            <h3>识别输入</h3>
+            <p>确认参考图、目标物体或场景、数量、视角、用途，以及必须保留或避免的限制。</p>
           </div>
         </article>
-        <article>
+        <article class="step">
           <span class="num">02</span>
           <div>
-            <h4>提取风格</h4>
-            <p>分析媒介、构图、配色、材质、线条、字体、光影和主体关系。</p>
+            <h3>提取风格</h3>
+            <p>分析媒介、构图、配色、线条、材质、字体、光影、留白和主体比例。</p>
           </div>
         </article>
-        <article>
+        <article class="step">
           <span class="num">03</span>
           <div>
-            <h4>生成提示词</h4>
-            <p>把风格 brief 转换成可直接用于 image2 或其他生图工具的 prompt。</p>
+            <h3>生成提示词</h3>
+            <p>输出可直接用于 image2 或其他生图工具的 prompt、负面约束和变体策略。</p>
           </div>
         </article>
-        <article>
+        <article class="step">
           <span class="num">04</span>
           <div>
-            <h4>筛选返工</h4>
-            <p>围绕风格一致、物体可识别、构图可用、后续可编辑来判断。</p>
+            <h3>筛选返工</h3>
+            <p>围绕风格一致、对象可识别、构图可用、后续可编辑来判断和迭代。</p>
           </div>
         </article>
       </section>
 
       <section class="section-head">
-        <div class="label">How to use</div>
-        <h2>调用方式</h2>
-        <p>建议把触发词放在任务开头，并明确目标对象。其余信息越完整，方案越稳定。</p>
+        <h2>如何调用</h2>
+        <p>使用时只需要写出触发词和目标对象。数量、用途、是否写实、视角和约束越清楚，越能稳定得到可用方案。</p>
       </section>
 
-      <section class="notes" aria-label="调用和安装">
-        <article class="note">
+      <section class="method" aria-label="调用方式">
+        <article class="panel">
           <h3>最短调用</h3>
           <pre><code>使用 $same-style-object-variants，帮我基于这张参考图生成同风格物体变体。
 目标物体：一个沙发</code></pre>
         </article>
-
-        <article class="note">
+        <article class="panel lemon">
           <h3>完整调用</h3>
           <pre><code>使用 $same-style-object-variants，基于这张参考图生成同风格场景变体。
 目标场景：一个舒适的家居场景
@@ -659,52 +524,56 @@
         </article>
       </section>
 
-      <section class="notes" aria-label="安装和返工">
-        <article class="note">
+      <section class="method" aria-label="安装和返工">
+        <article class="panel lilac">
           <h3>安装方式</h3>
           <p>下载压缩包后解压，将 <code>same-style-object-variants</code> 文件夹复制到 Codex skills 目录。</p>
           <pre><code>mkdir -p ~/.codex/skills
 cp -R same-style-object-variants ~/.codex/skills/</code></pre>
         </article>
-
-        <article class="note">
-          <h3>常用返工</h3>
+        <article class="panel">
+          <h3>常用返工语句</h3>
           <ul>
             <li>不要写实，严格跟随参考图的插画/平面/手绘风格。</li>
             <li>只参考当前这张图，不要继承历史生成结果。</li>
             <li>只生成 1 个主体物体，不要额外添加同类物体。</li>
-            <li>文字只作为版式元素，不需要真实可读。</li>
+            <li>文字只作为版式元素，不需要真实可读，不要出现品牌 logo。</li>
           </ul>
         </article>
       </section>
 
-      <section class="samples" aria-label="适用任务">
+      <section class="section-head">
+        <h2>适合的任务</h2>
+        <p>这不是完整 UED 还原流程，而是专注于同风格变体：先读懂视觉风格，再替换对象或延展场景。</p>
+      </section>
+
+      <section class="samples" aria-label="适合任务">
         <article class="sample">
           <h3>Illustration</h3>
-          <p>参考图是红底手绘家居海报时，输出同样手绘、同样色彩节奏的家居场景。</p>
+          <p>红底手绘家居海报、生活方式插画、轻量卡通场景延展。</p>
         </article>
         <article class="sample">
           <h3>Catalog</h3>
-          <p>参考图是黑白产品目录页时，保留留白、字体比例和产品呈现方式。</p>
+          <p>黑白产品目录页、家具/灯具单品展示、极简品牌画册。</p>
         </article>
         <article class="sample">
           <h3>Campaign</h3>
-          <p>参考图是促销视觉时，延续构图、背景和商业素材组合感。</p>
+          <p>促销海报素材、商业摄影组合、节日视觉和社媒传播图。</p>
         </article>
       </section>
 
       <section class="share">
         <div>
-          <h2>Share with your team</h2>
-          <p>把这个 GitHub Pages 链接贴到飞书文档即可。团队成员可以在线查看，也可以下载 skill 安装包。</p>
+          <h2>Share this guide</h2>
+          <p>把当前 GitHub Pages 链接贴进飞书，团队成员就可以在线查看这份操作指南，并下载 skill 安装包。</p>
         </div>
-        <a href="same-style-object-variants-skill.zip">Download skill <span class="circle">→</span></a>
+        <a class="download" href="same-style-object-variants-skill.zip">Download skill <b>→</b></a>
       </section>
     </main>
 
     <footer>
-      <span>same-style-object-variants · Codex skill operation guide</span>
-      <span>Updated for shared GitHub Pages</span>
+      <span>same-style-object-variants · 操作指南</span>
+      <span>Template: Soft Editorial from beautiful-html-templates</span>
     </footer>
   </div>
 </body>
