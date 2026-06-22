@@ -346,6 +346,115 @@
       line-height: 1.55;
     }
 
+    .version {
+      margin-top: 78px;
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(380px, 1.1fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .version-copy {
+      min-height: 520px;
+      border-radius: 36px;
+      padding: 38px;
+      background: var(--blush);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .version-copy .eyebrow {
+      width: max-content;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.48);
+      color: var(--ink-soft);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .version-copy h2 {
+      margin-top: 34px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(58px, 6.2vw, 104px);
+      font-weight: 500;
+      line-height: 0.9;
+      letter-spacing: -0.025em;
+    }
+
+    .version-copy p {
+      margin-top: 28px;
+      color: var(--ink-soft);
+      font-size: 17px;
+      line-height: 1.62;
+      font-weight: 300;
+    }
+
+    .version-points {
+      display: grid;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .version-points span {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 12px 0;
+      border-top: 1px solid var(--rule);
+      color: var(--ink-soft);
+      font-size: 14px;
+    }
+
+    .version-points b {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .asset-card {
+      min-height: 520px;
+      border-radius: 36px;
+      padding: 34px;
+      background:
+        linear-gradient(45deg, rgba(42,36,27,0.055) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(42,36,27,0.055) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(42,36,27,0.055) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(42,36,27,0.055) 75%),
+        rgba(255,255,255,0.5);
+      background-position: 0 0, 0 12px, 12px -12px, -12px 0;
+      background-size: 24px 24px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .asset-card img {
+      width: min(92%, 680px);
+      max-height: 470px;
+      object-fit: contain;
+      filter: drop-shadow(0 24px 28px rgba(42,36,27,0.18));
+    }
+
+    .asset-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .asset-actions .download {
+      background: rgba(255,255,255,0.72);
+      color: var(--ink);
+    }
+
+    .asset-actions .download b {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
     .share {
       margin-top: 78px;
       padding: 42px;
@@ -399,7 +508,8 @@
       .cover,
       .section-head,
       .method,
-      .share {
+      .share,
+      .version {
         grid-template-columns: 1fr;
       }
 
@@ -560,6 +670,30 @@ cp -R same-style-object-variants ~/.codex/skills/</code></pre>
           <h3>Campaign</h3>
           <p>促销海报素材、商业摄影组合、节日视觉和社媒传播图。</p>
         </article>
+      </section>
+
+      <section class="version" aria-label="第二版更新">
+        <article class="version-copy">
+          <div>
+            <span class="eyebrow">Version 02</span>
+            <h2>透明底素材交付</h2>
+            <p>第二版把“生成后必须保存到固定目录”加入流程：先用风格参考生成纯主体素材，再用干净色底抠成透明 PNG，避免模型预览丢失后只能靠截图找回。</p>
+          </div>
+          <div>
+            <div class="version-points">
+              <span><b>Reference</b> 跟随当前示例的软萌 3D 人物与快递箱风格</span>
+              <span><b>Subject</b> 女快递员抱快递箱，去掉背景和周边元素</span>
+              <span><b>Output</b> 固定保存原图，并提供透明底 PNG</span>
+            </div>
+            <div class="asset-actions">
+              <a class="download" href="assets/v2/female-courier-transparent.png" download>Download PNG <b>→</b></a>
+              <a class="download" href="assets/v2/female-courier-generated.png" download>Original <b>→</b></a>
+            </div>
+          </div>
+        </article>
+        <figure class="asset-card">
+          <img src="assets/v2/female-courier-transparent.png" alt="透明底女快递员抱快递箱素材" />
+        </figure>
       </section>
 
       <section class="share">
