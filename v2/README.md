@@ -5,9 +5,3 @@ Static GitHub Pages site for the same-style-object-variants Codex skill.
 - Guide: `index.html`
 - Skill package: `same-style-object-variants-skill.zip`
 - Version 02 asset demo: `assets/v2/female-courier-transparent.png`
-
-## Public Pages
-
-- Latest: https://rigaanaj95-tech.github.io/same-style-object-variants-guide/
-- v1.0: https://rigaanaj95-tech.github.io/same-style-object-variants-guide/v1/
-- v2.0: https://rigaanaj95-tech.github.io/same-style-object-variants-guide/v2/

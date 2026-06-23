@@ -455,38 +455,6 @@
       color: var(--paper);
     }
 
-    .versions {
-      margin-top: 24px;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-    }
-
-    .version-link {
-      min-height: 168px;
-      border-radius: 30px;
-      padding: 28px;
-      background: rgba(255,255,255,0.52);
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border: 1px solid var(--rule);
-    }
-
-    .version-link b {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 52px;
-      font-weight: 500;
-      line-height: 0.95;
-    }
-
-    .version-link span {
-      color: var(--ink-soft);
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
     .share {
       margin-top: 78px;
       padding: 42px;
@@ -557,8 +525,7 @@
       .cover { padding-top: 48px; }
       .hero-panel,
       .steps,
-      .samples,
-      .versions {
+      .samples {
         grid-template-columns: 1fr;
       }
       .hero-card.wide { grid-column: auto; }
@@ -735,17 +702,6 @@ cp -R same-style-object-variants ~/.codex/skills/</code></pre>
           <p>把当前 GitHub Pages 链接贴进飞书，团队成员就可以在线查看这份操作指南，并下载 skill 安装包。</p>
         </div>
         <a class="download" href="same-style-object-variants-skill.zip">Download skill <b>→</b></a>
-      </section>
-
-      <section class="versions" aria-label="历史版本">
-        <a class="version-link" href="v1/">
-          <b>v1.0</b>
-          <span>第一版操作指南，保留最初发布时的页面和安装包。</span>
-        </a>
-        <a class="version-link" href="v2/">
-          <b>v2.0</b>
-          <span>第二版加入透明底素材交付示例和固定保存流程。</span>
-        </a>
       </section>
     </main>
 
